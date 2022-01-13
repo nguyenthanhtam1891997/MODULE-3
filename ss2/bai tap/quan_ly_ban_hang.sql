@@ -20,7 +20,7 @@ foreign key (customer_id) references customer(customer_id)
 create table order_detail(
 ordei_id int,
 product_id int,
-order_qty varchar(55),
+order_qty int,
 primary key (ordei_id,product_id),
 foreign key (ordei_id) references order_pill(order_id),
 foreign key (product_id) references product(product_id)

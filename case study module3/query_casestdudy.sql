@@ -169,5 +169,73 @@ where year(hop_dong.ngay_lam_hop_dong)>=2019 and year(hop_dong.ngay_lam_hop_dong
  group by nhan_vien.ma_nhan_vien
  ;
 -- câu 17
+create temporary table ban_tam as
+ select loai_khach.ma_loai_khach,khach_hang.ma_khach_hang,khach_hang.ho_ten,hop_dong.ma_hop_dong,
+ hop_dong_chi_tiet.ma_hop_dong_chi_tiet,dich_vu_di_kem.ma_dich_vu_di_kem,dich_vu.chi_phi_thue,
+ hop_dong_chi_tiet.so_luong,dich_vu_di_kem.gia
+from 
+loai_khach left join khach_hang on khach_hang.ma_loai_khach = loai_khach.ma_loai_khach
+left join hop_dong on hop_dong.ma_khach_hang = khach_hang.ma_khach_hang
+left join dich_vu on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
+left join hop_dong_chi_tiet on hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
+left join dich_vu_di_kem on dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
+ where loai_khach.ten_loai_khach = "Platinium" and year(hop_dong.ngay_lam_hop_dong) = 2021
+group by khach_hang.ma_khach_hang
+having sum(dich_vu.chi_phi_thue) + hop_dong_chi_tiet.so_luong * sum(dich_vu_di_kem.gia)  > 10000000 
+;
+select * from ban_tam;
 
- 
+SET SQL_SAFE_UPDATES = 0;
+update khach_hang
+set khach_hang.ma_loai_khach = 1
+where ma_khach_hang in (select ma_khach_hang from ban_tam) ;
+SET SQL_SAFE_UPDATES = 1;
+select khach_hang.ma_loai_khach,khach_hang.ho_ten,khach_hang.ma_khach_hang,loai_khach.ten_loai_khach from 
+loai_khach left join khach_hang on  khach_hang.ma_loai_khach = loai_khach.ma_loai_khach ;
+-- câu 18 //////////////////////////
+
+create temporary table xoa_khach_hang as
+select khach_hang.ma_khach_hang,khach_hang.ho_ten,khach_hang.email,khach_hang.so_dien_thoai,khach_hang.ngay_sinh,khach_hang.dia_chi,
+hop_dong.ma_hop_dong 
+from 
+khach_hang left join hop_dong on khach_hang.ma_khach_hang = hop_dong.ma_khach_hang
+where year(hop_dong.ngay_lam_hop_dong) < 2021
+group by hop_dong.ma_hop_dong;
+
+select * from xoa_khach_hang;
+
+select khach_hang.ma_khach_hang,khach_hang.ho_ten from khach_hang
+where ma_khach_hang in (select ma_khach_hang from xoa_khach_hang);
+
+SET FOREIGN_KEY_CHECKS = 0;
+delete from khach_hang
+where ma_khach_hang in (select ma_khach_hang from xoa_khach_hang);
+SET FOREIGN_KEY_CHECKS = 1;
+-- câu 19 //////////////////////////////////
+create temporary table nang_gia_dich_vu_di_kem as
+select hop_dong.ma_hop_dong,hop_dong_chi_tiet.ma_hop_dong_chi_tiet,
+dich_vu_di_kem.ma_dich_vu_di_kem,dich_vu_di_kem.gia,hop_dong_chi_tiet.so_luong,
+dich_vu_di_kem.ten_dich_vu_di_kem
+from
+hop_dong left join hop_dong_chi_tiet on hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
+left join dich_vu_di_kem on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
+where year(hop_dong.ngay_lam_hop_dong) = 2020 and hop_dong_chi_tiet.so_luong > 10 
+;
+select * from dich_vu_di_kem
+where ma_dich_vu_di_kem in (select ma_dich_vu_di_kem from nang_gia_dich_vu_di_kem);
+SET SQL_SAFE_UPDATES = 0;
+update dich_vu_di_kem
+set dich_vu_di_kem.gia = dich_vu_di_kem.gia * 2 
+where ma_dich_vu_di_kem in (select ma_dich_vu_di_kem from nang_gia_dich_vu_di_kem);
+SET SQL_SAFE_UPDATES = 1;
+
+-- câu 20
+select nhan_vien.ma_nhan_vien,nhan_vien.ho_ten,nhan_vien.email,nhan_vien.ngay_sinh,nhan_vien.dia_chi
+from nhan_vien
+union all
+select khach_hang.ma_khach_hang,khach_hang.ho_ten,khach_hang.email,khach_hang.ngay_sinh,khach_hang.dia_chi
+from khach_hang
+union all 
+select ma_khach_hang,ho_ten,email,ngay_sinh,dia_chi 
+from xoa_khach_hang
+;

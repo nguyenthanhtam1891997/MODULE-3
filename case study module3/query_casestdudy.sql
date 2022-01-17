@@ -127,4 +127,47 @@ left join dich_vu_di_kem on dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet
 group by dich_vu_di_kem.ma_dich_vu_di_kem
 having sum(hop_dong_chi_tiet.so_luong) = (select max(hop_dong_chi_tiet.so_luong) from hop_dong_chi_tiet);
 
+-- câu 14
+select hop_dong.ma_hop_dong,loai_dich_vu.ten_dich_vu,
+dich_vu_di_kem.ten_dich_vu_di_kem,count(hop_dong_chi_tiet.so_luong) as so_lan_su_dung
+from
+loai_dich_vu left join dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_dich_vu
+left join hop_dong on hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
+left join hop_dong_chi_tiet on hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
+left join dich_vu_di_kem on dich_vu_di_kem.ma_dich_vu_di_kem = hop_dong_chi_tiet.ma_dich_vu_di_kem
+ group by dich_vu_di_kem.ten_dich_vu_di_kem
+  having  count(hop_dong_chi_tiet.so_luong) = 1;
 
+-- câu 15
+select nhan_vien.ma_nhan_vien,nhan_vien.ho_ten,trinh_do.ten_trinh_do,
+bo_phan.ten_bo_phan,nhan_vien.so_dien_thoai,nhan_vien.dia_chi
+from
+bo_phan left join nhan_vien on bo_phan.ma_bo_phan = nhan_vien.ma_bo_phan
+left join trinh_do on trinh_do.ma_trinh_do = nhan_vien.ma_trinh_do
+left join hop_dong on hop_dong.ma_nhan_vien = nhan_vien.ma_nhan_vien
+where year(hop_dong.ngay_lam_hop_dong)>=2020 and year(hop_dong.ngay_lam_hop_dong) < 2022
+group by nhan_vien.ma_nhan_vien
+having count(hop_dong.ma_hop_dong) <= 3
+;
+-- câu 16 ///////////////////////////////////////////
+-- select nhan_vien.ma_nhan_vien,nhan_vien.ho_ten
+-- from
+-- nhan_vien  inner join hop_dong on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+-- where year(hop_dong.ngay_lam_hop_dong)>=2019 and year(hop_dong.ngay_lam_hop_dong) < 2022
+--  
+-- group by hop_dong.ma_hop_dong
+-- -- having count(hop_dong.ma_hop_dong) 
+-- ;
+select nhan_vien.ma_nhan_vien,nhan_vien.ho_ten from nhan_vien
+where nhan_vien.ma_nhan_vien not in
+ (select nhan_vien.ma_nhan_vien
+from
+nhan_vien inner join hop_dong on nhan_vien.ma_nhan_vien = hop_dong.ma_nhan_vien
+where year(hop_dong.ngay_lam_hop_dong)>=2019 and year(hop_dong.ngay_lam_hop_dong) < 2022 
+  group by hop_dong.ma_hop_dong
+ )
+ group by nhan_vien.ma_nhan_vien
+ ;
+-- câu 17
+
+ 

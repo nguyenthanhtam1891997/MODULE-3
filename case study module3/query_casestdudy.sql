@@ -158,7 +158,7 @@ having count(hop_dong.ma_hop_dong) <= 3
 -- group by hop_dong.ma_hop_dong
 -- -- having count(hop_dong.ma_hop_dong) 
 -- ;
-select nhan_vien.ma_nhan_vien,nhan_vien.ho_ten from nhan_vien
+select nhan_vien.ma_nhan_vien,nhan_vien.ho_ten,nhan_vien.email,nhan_vien.ngay_sinh,nhan_vien.dia_chi from nhan_vien
 where nhan_vien.ma_nhan_vien not in
  (select nhan_vien.ma_nhan_vien
 from
@@ -236,6 +236,6 @@ union all
 select khach_hang.ma_khach_hang,khach_hang.ho_ten,khach_hang.email,khach_hang.ngay_sinh,khach_hang.dia_chi
 from khach_hang
 union all 
-select ma_khach_hang,ho_ten,email,ngay_sinh,dia_chi 
+select ma_khach_hang,ho_ten,email,ngay_sinh,khach_hang.dia_chi 
 from xoa_khach_hang
 ;

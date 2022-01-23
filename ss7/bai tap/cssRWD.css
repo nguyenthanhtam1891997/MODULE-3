@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: lightslategrey;
+
+}
+li {
+    list-style: none;
+}
+.container {
+    /*max-width: 100% ;*/
+    margin: 0 auto;
+
+}
+#header {
+    background-color: #262020;
+}
+nav {
+    display: flex;
+    /*justify-content: space-around;*/
+    /*justify-items: center;*/
+}
+#main-menu {
+    display: flex;
+    list-style: none;
+    width: 80%;
+    padding: 0;
+    margin: 0;
+}
+#img {
+    padding: 5px 0;
+}
+#img p {
+    max-width: 30%;
+    height: auto;
+}
+#main-menu li {
+    position: relative;
+}
+#main-menu li a {
+    color: #f8f8f8;
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+}
+
+/*#main-menu  ul {*/
+/*    visibility: hidden;*/
+/*}*/
+#header  ul li:hover ul  {
+    visibility: visible;
+}
+/*#main-menu li :hover ul.sub-menu  {*/
+/*    visibility: visible;*/
+/*}*/
+#main-menu ul.sub-menu {
+    position: absolute;
+    background-color:  #262020;
+    padding: 12px 0 ;
+    list-style: none;
+    width: 150px;
+    visibility: hidden;
+
+}
+/*#main-menu ul.sub-menu:hover a {*/
+/*    border-bottom: #EBEDF0 1px solid;*/
+/*}*/
+#main-menu ul.sub-menu a {
+    padding:10px 20px;
+}
+#main-menu ul.sub-menu li:last-child a{
+    border: none;
+}
+.row {
+    content: "";
+    display: block;
+    clear: both;
+}
+[class*="col-"] {
+    float: left;
+    padding: 5px;
+}
+.col-1 {
+    width: 8.33%
+}
+
+.col-2 {
+    width: 16.66%
+}
+
+.col-3 {
+    width: 25%
+}
+
+.col-4 {
+    width: 33.3%
+}
+
+.col-5 {
+    width: 41.66%
+}
+
+.col-6 {
+    width: 50%
+}
+
+.col-7 {
+    width: 58.33%
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+/*for dextop*/
+@media screen and (max-width: 991px) and (min-width: 768px){
+    [class*="col-"]{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 768px) {
+    [class*="col-"]{
+        width: 100%;
+    }
+}
+#right {
+    justify-content: center;
+}
+#right li {
+    border: 1px solid red;
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px 0;
+
+}
+#content p span{
+    font-size: 40px;
+    font-weight: 700;
+}
+/*!*#footer*!????*/
+#footer  {
+   /*border: 1px solid red;*/
+    background-color: #262020;
+    color: #f8f8f8;
+    padding: 10px 0 10px 5px ;
+}
+
+
+
+
+
+

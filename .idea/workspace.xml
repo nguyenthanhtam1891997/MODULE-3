@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="364a65af-dc8f-46fe-beea-4af018c462c1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/case study module3/query_casestdudy.sql" beforeDir="false" afterPath="$PROJECT_DIR$/case study module3/query_casestdudy.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss10/calculator/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ss10/calculator/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss9/server_time/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ss9/server_time/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss9/server_time/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ss9/server_time/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ss9/server_time/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ss9/server_time/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +24,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ss6/thuc hanh" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -34,11 +38,12 @@
       <option name="presentableId" value="Default" />
       <updated>1642616974006</updated>
       <workItem from="1642616977090" duration="17000" />
+      <workItem from="1644544225849" duration="87000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1642616991444">

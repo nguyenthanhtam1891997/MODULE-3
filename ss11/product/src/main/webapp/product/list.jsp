@@ -15,7 +15,12 @@
 <body>
 <h1>Product</h1>
 <p><a href="/productList?action=create">Creeate</a></p>
-<p><a href="/productList?action=search">Search</a></p>
+<form  >
+    <input type="text" name="nameProduct" >
+    <input type="text" name="action"  hidden value="search">
+<%--    <input type="submit" value="Search product">--%>
+    <button>Search product</button>
+</form>
 
 
 <table border="1">

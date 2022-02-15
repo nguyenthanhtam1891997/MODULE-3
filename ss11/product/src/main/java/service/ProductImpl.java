@@ -53,9 +53,10 @@ public class ProductImpl implements ProductService{
             nameProduct = product.getName().toLowerCase();
             if (nameProduct.contains(productName) ){
                 result.add(product);
-            }else {
-                result = null;
             }
+//            else {
+//                result = null;
+//            }
         }
 
         return result;

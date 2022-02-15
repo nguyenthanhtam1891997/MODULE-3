@@ -44,15 +44,30 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showSearch(HttpServletRequest request, HttpServletResponse response) {
-       RequestDispatcher dispatcher = request.getRequestDispatcher("product/search.jsp");
+//       RequestDispatcher dispatcher = request.getRequestDispatcher("product/search.jsp");
+//        try {
+//            dispatcher.forward(request,response);
+//        }catch (ServletException e){
+//            e.printStackTrace();
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
+        String nameProduct = request.getParameter("nameProduct");
+        List<Product> productList = this.productService.search(nameProduct);
+        RequestDispatcher dispatcher;
+        if (productList.size() == 0){
+            dispatcher = request.getRequestDispatcher("error-404.jsp");
+        }else {
+            request.setAttribute("list",productList);
+            dispatcher = request.getRequestDispatcher("product/search-2.jsp");
+        }
         try {
             dispatcher.forward(request,response);
-        }catch (ServletException e){
+        } catch (ServletException e) {
             e.printStackTrace();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 
@@ -167,22 +182,22 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void searchProduct(HttpServletRequest request, HttpServletResponse response) {
-        String nameProduct = request.getParameter("nameProduct");
-        List<Product> productList = this.productService.search(nameProduct);
-        RequestDispatcher dispatcher;
-        if (productList == null){
-            dispatcher = request.getRequestDispatcher("error-404.jsp");
-        }else {
-            request.setAttribute("list",productList);
-            dispatcher = request.getRequestDispatcher("product/search-2.jsp");
-        }
-        try {
-            dispatcher.forward(request,response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        String nameProduct = request.getParameter("nameProduct");
+//        List<Product> productList = this.productService.search(nameProduct);
+//        RequestDispatcher dispatcher;
+//        if (productList == null){
+//            dispatcher = request.getRequestDispatcher("error-404.jsp");
+//        }else {
+//            request.setAttribute("list",productList);
+//            dispatcher = request.getRequestDispatcher("product/search-2.jsp");
+//        }
+//        try {
+//            dispatcher.forward(request,response);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
